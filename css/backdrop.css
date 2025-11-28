@@ -1,0 +1,279 @@
+.Backdrop__filter {
+    position: absolute; /* وضعه مطلق داخل layer_text */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* ****** خصائص الحركة والإخفاء ****** */
+    transform: translateY(0); /* يبدأ مغطياً الصورة */
+    transition: transform 0.5s ease-out; /* حركة السحب */
+    
+    /* ****** تطبيق الفلتر على الخلفية (الصورة) ****** */
+    background-color: rgba(0, 0, 0, 0); /* شفافية تامة للطبقة نفسها */
+    
+    /* تطبيق فلتر الأبيض والأسود على الصورة أسفلها */
+    backdrop-filter: grayscale(100%);
+    -webkit-backdrop-filter: grayscale(100%);
+    
+    z-index: 40; /* بين الصورة والنصوص */
+}
+
+/* ================================================= */
+/* 4. تأثيرات الـ HOVER (التحويم)                    */
+/* ================================================= */
+
+/* عند الهوفر: سحب الطبقة للأعلى لإزالة الفلتر */
+.layer__img:hover .Backdrop__filter {
+  transform: translateY(-100%); /* تسحب الطبقة خارج الرؤية للأعلى */
+}
+/* ssssssssssssssssssssssssssssssssssssssssssssssssssssss */
+/* ssssssssssssssssssssssssssssssssssssssssssssssssssssss */
+/* ssssssssssssssssssssssssssssssssssssssssssssssssssssss */
+/* ssssssssssssssssssssssssssssssssssssssssssssssssssssss */
+/* ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss */
+
+/* ================================================= */
+/* 1. الإعداد الأساسي والقيم المشتركة                 */
+/* ================================================= */
+#OurTeam {
+  background-color: var(--color-black);
+  padding-bottom: 10rem !important;
+  /* تنسيق عنوان القسم */
+  #title__header {
+    .parag {
+      font-size: 2rem;
+      color: #99a1af;
+    }
+  }
+}
+
+.layer__img {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 2. الصورة في الوضع العادي (ملونة، لكن الفلتر سيغطيها لاحقاً) */
+.layer__img img {
+  /* نترك الصورة ملونة هنا، لأن الفلتر سيُطبق عبر backdrop-filter على طبقة ::after */
+  /* يمكنك إضافة انتقال هنا إذا كنت ترغب في تأثير زوم (scale) عند الهوفر */
+  transition: transform 0.5s ease;
+}
+
+/* ================================================= */
+/* 3. تنسيق طبقة النصوص الثابتة (Layer Text)        */
+/* ================================================= */
+.layer_text {
+  /* هذه الخصائص تجعل النصوص ثابتة ومغطية للصورة */
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding: 1rem;
+  z-index: 5; /* لتبقى النصوص فوق طبقة الفلتر (::after) */
+}
+
+/* الألوان الباهتة للنصوص في الوضع العادي */
+.layer_text .text-defo h3,
+.layer_text .text-defo p,
+.layer_text .text-defo span,
+.layer_text .text-rotate {
+  color: #99a1af; /* اللون الرمادي الباهت */
+  transition: color 0.5s ease; /* transition لألوان النص */
+}
+
+.layer_text .text-defo {
+  h3 {
+    font-size: 2rem;
+    font-weight: var(--font-weight-7);
+    font-family: var(--ff-DaysOne);
+    padding: 0;
+    margin: 0;
+  }
+  p {
+    font-size: 1.4rem;
+    padding: 0;
+    margin: 0;
+  }
+  span {
+    font-size: 1.2rem;
+    padding: 0;
+    margin: 0;
+  }
+}
+.layer_text .text-rotate {
+  transform: rotate(90deg);
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-7);
+}
+
+/* ================================================= */
+/* 4. الطبقة الساحبة (Pulling Overlay) عبر ::after  */
+/* ================================================= */
+.layer__img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* تبدأ مغطية الصورة */
+  transform: translateY(0);
+  transition: transform 0.5s ease-out; /* حركة السحب */
+
+  /* خلفية شفافة لطبقة الـ ::after نفسها */
+  background-color: rgba(0, 0, 0, 0);
+
+  /* ****** تطبيق فلتر الأبيض والأسود على ما يقع أسفله ****** */
+  backdrop-filter: grayscale(100%);
+  -webkit-backdrop-filter: grayscale(100%);
+
+  z-index: 4; /* بين الصورة والنصوص */
+}
+
+/* ================================================= */
+/* 5. تأثيرات الـ HOVER (التحويم)                    */
+/* ================================================= */
+
+/* عند الهوفر: سحب الطبقة للأعلى لإزالة الفلتر */
+.layer__img:hover::after {
+  transform: translateY(-100%); /* تسحب الطبقة خارج الرؤية للأعلى */
+}
+
+/* عند الهوفر: استعادة ألوان النصوص لتصبح حيوية */
+.layer__img:hover .layer_text .text-defo h3 {
+  color: var(--color-wihet);
+}
+
+.layer__img:hover .layer_text .text-defo p,
+.layer__img:hover .layer_text .text-defo span {
+  color: var(--color-main);
+}
+
+.layer__img:hover .layer_text .text-rotate {
+  color: var(--color-main);
+}
+
+/* تأثير إضافي (اختياري): تكبير الصورة قليلاً عند الهوفر */
+.layer__img:hover img {
+  transform: scale(1.05);
+}
+
+/* sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss */
+/* ================================================= */
+/* 1. الإعداد الأساسي والقيم المشتركة                 */
+/* ================================================= */
+#OurTeam {
+  background-color: var(--color-black);
+  padding-bottom: 10rem !important;
+  #title__header {
+    .parag {
+      font-size: 2rem;
+      color: #99a1af;
+    }
+  }
+}
+
+.layer__img {
+  position: relative;
+  overflow: hidden; 
+}
+
+/* الصورة تظل ملونة، لأن الفلتر سيُطبق فوقها */
+.layer__img img {
+  /* تأثير الزوم عند الهوفر */
+  transition: transform 0.5s ease;
+}
+
+/* ================================================= */
+/* 2. حاوية النصوص الثابتة (.layer_text)           */
+/* ================================================= */
+.layer_text {
+  position: absolute;
+  inset: 0;
+  padding: 1rem;
+  z-index: 5; /* لتبقى النصوص فوق كل شيء */
+  
+  /* * لا حركة على هذا العنصر، الحركة فقط على الابن (Backdrop__filter) */
+}
+
+/* الألوان الباهتة للنصوص في الوضع العادي */
+.layer_text .text-defo h3, 
+.layer_text .text-defo p, 
+.layer_text .text-defo span,
+.layer_text .text-rotate {
+    color: #99a1af; /* اللون الرمادي الباهت */
+    transition: color 0.5s ease;
+}
+
+/* (باقي تنسيقات h3, p, span, text-rotate كما هي) */
+
+/* ================================================= */
+/* 3. الطبقة الساحبة المتحركة (.Backdrop__filter)   */
+/* ================================================= */
+.Backdrop__filter {
+    position: absolute; /* وضعه مطلق داخل layer_text */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* ****** خصائص الحركة والإخفاء ****** */
+    transform: translateY(0); /* يبدأ مغطياً الصورة */
+    transition: transform 0.5s ease-out; /* حركة السحب */
+    
+    /* ****** تطبيق الفلتر على الخلفية (الصورة) ****** */
+    background-color: rgba(0, 0, 0, 0); /* شفافية تامة للطبقة نفسها */
+    
+    /* تطبيق فلتر الأبيض والأسود على الصورة أسفلها */
+    backdrop-filter: grayscale(100%);
+    -webkit-backdrop-filter: grayscale(100%);
+    
+    z-index: 40; /* بين الصورة والنصوص */
+}
+
+/* ================================================= */
+/* 4. تأثيرات الـ HOVER (التحويم)                    */
+/* ================================================= */
+
+/* عند الهوفر: سحب الطبقة للأعلى لإزالة الفلتر */
+.layer__img:hover .Backdrop__filter {
+  transform: translateY(-100%); /* تسحب الطبقة خارج الرؤية للأعلى */
+}
+
+/* عند الهوفر: استعادة ألوان النصوص لتصبح حيوية */
+.layer__img:hover .layer_text .text-defo h3 {
+  color: var(--color-wihet); 
+}
+
+.layer__img:hover .layer_text .text-defo p,
+.layer__img:hover .layer_text .text-defo span {
+  color: var(--color-main); 
+}
+
+.layer__img:hover .layer_text .text-rotate {
+  color: var(--color-main); 
+}
+
+/* تأثير إضافي: تكبير الصورة قليلاً عند الهوفر */
+.layer__img:hover img {
+  transform: scale(1.05); 
+}
+/* ssssssssssssssssssssssssssssssssssssssssssssssssssssssss */
+.team-member-card .relative.h-80:before {
+  content: "";
+  background: inherit;
+  -webkit-backdrop-filter: grayscale() brightness(0.9);
+  backdrop-filter: grayscale() brightness(0.9);
+  z-index: 1;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(0);
+}
+/* sssssssssssssssssssssssssssssssssssssssssssssssssss */

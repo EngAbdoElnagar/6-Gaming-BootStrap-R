@@ -1,0 +1,182 @@
+:root {
+  font-size: 62.5%;
+  --color-main: #cbfe1c;
+  --color-black: #0b0e13;
+  --color-wihet: #f1f1f1;
+  --background-section-black: #0b0e13;
+  --background-card-black: #1e2939;
+  --background-section-gradient: linear-gradient(150deg, #111828, #0b0e13);
+  --background-card-gradient: linear-gradient(150deg, #cafe1f, #0edf72);
+
+  --color-mix: linear-gradient(150deg, #cbfe1c 40%, transparent);
+
+  --border: 1px solid #e5e7eb;
+  /* FONT */
+  --ff-DaysOne: "Days One", sans-serif;
+  --ff-ChakraPetch: "Chakra Petch", sans-serif;
+  --font-weight-bold: bold;
+  --font-weight-bolder: bolder;
+  --font-weight-9: 900;
+  --font-weight-8: 800;
+  --font-weight-7: 700;
+  --font-weight-6: 600;
+  --font-weight-5: 500;
+  --font-weight-4: 400;
+  --border-radius: 20px;
+  --transition-timing: 0.3s;
+  --box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+html {
+  overflow-x: hidden;
+}
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+::selection {
+  background-color: #cbfe1c;
+  color: #0b0e13;
+}
+a {
+  color: inherit;
+  display: inline-block;
+  text-decoration: none;
+}
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+}
+ul,
+ol {
+  list-style-type: none;
+}
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 8rem;
+}
+body {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  font-family: var(--ff-ChakraPetch);
+}
+/* glooble style */
+.effect__btn {
+  position: relative;
+  overflow: hidden;
+}
+.effect__btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120px;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    90deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.8),
+    transparent 70%
+  );
+  transition: var(--transition-timing);
+}
+.effect__btn:hover::before {
+  left: 100%;
+}
+
+#title__header {
+  text-align: center;
+}
+#title__header {
+  text-align: center;
+  .box {
+    width: fit-content;
+    margin: auto;
+    font-size: 1.4rem;
+    font-weight: var(--font-weight-7);
+    color: var(--color-main);
+    letter-spacing: 0.2rem;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -85px;
+      width: 70px;
+      height: 3px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, var(--color-main), transparent);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -85px;
+      width: 70px;
+      height: 3px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, transparent, var(--color-main));
+    }
+  }
+  h2 {
+    width: fit-content;
+    margin: 15px auto;
+    color: var(--color-wihet);
+    font-size: 4.8rem;
+    font-weight: var(--font-weight-7);
+    font-family: var(--ff-DaysOne);
+  }
+  h3 {
+    font-size: 3.6rem;
+    font-weight: var(--font-weight-7);
+    color: var(--color-wihet);
+    span {
+      color: var(--color-main);
+    }
+  }
+}
+
+/*  */
+/* من 1024 فأكثر */
+/* html {
+  font-size: 62.5%;
+} */
+
+/* من 1024 إلى 768 */
+/* @media (max-width: 1023px) and (min-width: 768px) {
+  html {
+    font-size: 50%;
+  }
+} */
+
+/* من 768 إلى 640 */
+/* @media (max-width: 767px) and (min-width: 640px) {
+  html {
+    font-size: 47%;
+  }
+} */
+
+/* من 640 فأقل */
+/* @media (max-width: 639px) {
+  html {
+    font-size: 33.3%;
+  }
+} */
+
+/* الخط الأساسي */
+
+body {
+  font-size: 1.6rem;
+}
